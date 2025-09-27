@@ -10,7 +10,7 @@ namespace ReservaBL
 {
     public class UsuarioBL
     {
-      }
+      
         public static UsuarioEN ObtenerUsuarioPorId(int id)
         {
 
