@@ -10,4 +10,9 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ReservaDAL\ReservaDAL.csproj" />
+    <ProjectReference Include="..\ReservaEN\ReservaEN.csproj" />
+  </ItemGroup>
+
 </Project>
