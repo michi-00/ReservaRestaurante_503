@@ -19,7 +19,7 @@
                 <li class="list-group-item"><strong>Id:</strong> @Model.Id</li>
                 <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
             </ul>
-            <form asp-action="EliminarNumeroDeMesa" method="post">
+            <form asp-action="EliminarNumeroDeMesa" method="post"id="EliminarNumeroDeMesaForm">
                 <input type="hidden" asp-for="Id" />
                 <div class="d-flex justify-content-between">
                     <a asp-action="Index" class="btn btn-secondary">
@@ -33,3 +33,8 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/NumeroDeMesa.js"></script>
+}
+

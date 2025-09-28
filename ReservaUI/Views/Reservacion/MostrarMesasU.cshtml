@@ -25,3 +25,33 @@
         }
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        @* Éxitos *@
+        @if (TempData["Mensaje"] != null)
+        {
+                                <text>
+                                    Swal.fire({
+                                        icon: "success",
+                                        title: "Éxito",
+                                        text: "@Html.Raw(TempData["Mensaje"])"
+                                    });
+                                </text>
+        }
+          @if (TempData["YaTieneReservacion"] != null)
+    {
+                            <text>
+                                Swal.fire({
+                                        icon: "error",
+                                    title: "Error",
+                                            text: "@Html.Raw(TempData["YaTieneReservacion"])"
+                                });
+                            </text>
+    }
+
+    });
+</script>
+
+

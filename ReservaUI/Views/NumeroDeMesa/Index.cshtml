@@ -54,4 +54,52 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        @* Éxitos *@
+        @if (TempData["ExitoGuardar"] != null)
+        {
+                                    <text>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Éxito",
+                                                text: "@Html.Raw(TempData["ExitoGuardar"])"
+                                        });
+                                    </text>
+        }
+        @if (TempData["ExitoModificar"] != null)
+        {
+                                    <text>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Éxito",
+                                                 text: "@Html.Raw(TempData["ExitoModificar"])"
+                                        });
+                                    </text>
+        }
+        @if (TempData["ExitoEliminar"] != null)
+        {
+                                    <text>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Éxito",
+                                                 text: "@Html.Raw(TempData["ExitoEliminar"])"
+                                        });
+                                    </text>
+        }
+
+        @* Errores (ejemplo duplicado) *@
+        @if (TempData["ErrorDuplicado"] != null)
+        {
+                                    <text>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Error",
+                                              text: "@Html.Raw(TempData["ErrorDuplicado"])"
+                                        });
+                                    </text>
+        }
+    });
+</script>
 

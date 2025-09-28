@@ -1,0 +1,59 @@
+﻿@model ReservaEN.ReservacionEN
+@{
+    ViewData["Title"] = "ModificarReservacion";
+    Layout = "~/Views/Shared/Administrador.cshtml";
+}
+
+<h1>ModificarReservacion</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-warning text-white text-center">
+                    <h4><i class="bi bi-pencil-square"></i>Modificar Reservacion</h4>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="ModificarReservacion" method="post" id="ModificarReservacionForm">
+                        <input type="hidden" asp-for="Id" />
+
+                        <div class="mb-3">
+                            <label asp-for="IdMesa" class="form-label fw-bold">Mesa</label>
+                            <select asp-for="IdMesa" class="form-select" asp-items="ViewBag.Mesas">
+                                <option value="">-- Selecciona una Mesa --</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <input asp-for="IdNumeroDeMesa" type="hidden" />
+
+                        </div>
+                        <div class="mb-">
+                            <input asp-for="IdUsuario" type="hidden" />
+                         
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="FechaDeReservacion" class="form-label fw-bold"></label>
+                            <input asp-for="FechaDeReservacion" type="date" class="form-control" />
+                            <span asp-validation-for="FechaDeReservacion" class="text-danger"></span>
+                        </div>
+
+                        <!-- Fecha de Fin -->
+                        
+                        <div clas="d-flex justify-content-between">
+                            <button type="submit" class="btn btn warning">
+                                <i class="bi bi-check-circle"></i>Modificar
+                            </button>
+                            <a asp-action="MostrarReservacion" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i>Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/Reservacion.js"></script>
+}
+

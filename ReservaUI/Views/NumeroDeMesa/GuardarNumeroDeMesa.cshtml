@@ -12,10 +12,10 @@
             <h4 class="mb-0"><i class="bi bi-plus-square-fill"></i> Agregar Número de Mesa</h4>
         </div>
         <div class="card-body">
-            <form asp-action="GuardarNumeroDeMesa" method="post">
+            <form asp-action="GuardarNumeroDeMesa" method="post" id="GuardarNumeroDeMesaForm">
                 <div class="mb-3">
                     <label asp-for="Nombre" class="form-label"></label>
-                    <input asp-for="Nombre" class="form-control" placeholder="Ej: Mesa #1" />
+                    <input asp-for="Nombre" class="form-control" placeholder="Ej: Mesa #1" required />
                     <span asp-validation-for="Nombre" class="text-danger"></span>
                 </div>
                 <div class="d-flex justify-content-between">
@@ -31,3 +31,7 @@
     </div>
 </div>
 
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/NumeroDeMesa.js"></script>
+}

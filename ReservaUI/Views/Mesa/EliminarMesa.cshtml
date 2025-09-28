@@ -17,7 +17,7 @@
                 <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
                 <li class="list-group-item"><strong>Personas:</strong> @Model.Personas</li>
             </ul>
-            <form asp-action="EliminarMesa" method="post">
+            <form asp-action="EliminarMesa" method="post" id="EliminarMesaForm">
                 <input type="hidden" asp-for="Id" />
                 <div class="d-flex justify-content-between">
                     <a asp-action="Index" class="btn btn-secondary">
@@ -31,4 +31,8 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/Mesa.js"></script>
+}
 

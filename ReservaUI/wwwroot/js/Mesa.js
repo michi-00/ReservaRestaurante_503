@@ -1,5 +1,5 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    const formEliminar = document.getElementById("EliminarRolForm");
+    const formEliminar = document.getElementById("EliminarMesaForm");
 
     if (!formEliminar) return;
 
@@ -8,7 +8,7 @@
 
         Swal.fire({
             title: "¿Está seguro?",
-            text: "El Rol será eliminado permanentemente.",
+            text: "La Mesa será eliminada permanentemente.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
@@ -21,7 +21,7 @@
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-    const formGuardar = document.getElementById("GuardarRolForm");
+    const formGuardar = document.getElementById("GuardarMesaForm");
 
     if (formGuardar) {
         formGuardar.addEventListener("submit", function (e) {
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             Swal.fire({
                 title: "¿Está seguro?",
-                text: "Se guardará el Rol digitado.",
+                text: "Se guardará la Mesa digitada.",
                 icon: "question",
                 showCancelButton: true,
                 confirmButtonText: "Sí, guardar",
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 document.addEventListener("DOMContentLoaded", function () {
-    const formModificar = document.getElementById("ModificarRolForm");
+    const formModificar = document.getElementById("ModificarMesaForm");
 
     if (!formModificar) return;
 
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         Swal.fire({
             title: "¿Desea modificar este rol?",
-            text: "Se Modificara el rol seleccionado.",
+            text: "Se Modificara la Mesa seleccionada.",
             icon: "question",
             showCancelButton: true,
             confirmButtonText: "Sí, modificar",

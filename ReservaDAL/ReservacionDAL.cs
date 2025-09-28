@@ -81,6 +81,7 @@ namespace ReservaDAL
                 _conn.Open();
                 SqlCommand _comando = new SqlCommand("ModificarReservacion", _conn as SqlConnection);
                 _comando.CommandType = CommandType.StoredProcedure;
+                _comando.Parameters.Add(new SqlParameter("@Id", preservacionEN.Id));
                 _comando.Parameters.Add(new SqlParameter("@IdMesa", preservacionEN.IdMesa));
                 _comando.Parameters.Add(new SqlParameter("@IdNumeroDeMesa", preservacionEN.IdNumeroDeMesa));
                 _comando.Parameters.Add(new SqlParameter("@IdUsuario", preservacionEN.IdUsuario));

@@ -75,9 +75,8 @@ namespace ReservaUI.Controllers
                 bool existe = listaU.Any(u => u.Cuenta.ToLower().Trim() == pusuarioEN.Cuenta.ToLower().Trim()
                 && u.Id != pusuarioEN.Id); // evitar que choque con su propio nombre
 
-                bool existeN = listaU.Any(c => c.Celular.ToLower().Trim() == pusuarioEN.Celular.ToLower().Trim()
-                 && c.Id != pusuarioEN.Id); // evitar que choque con su propio celular
-                if (existe || existeN)
+            
+                if (existe )
                 {
                     TempData["ErrorDuplicadoModificado"] = "Algunos datos que intentas guardar ya existen.";
                     return RedirectToAction(nameof(MostrarUsuario));

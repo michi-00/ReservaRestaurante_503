@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using ReservaBL;
 using ReservaEN;
 
@@ -121,18 +122,20 @@ namespace ReservaUI.Controllers
 
             // Validar si ya existe reservación para este número de mesa por este usuario
             var listaReservaciones = ReservacionBL.MostrarReservacion();
-            bool existe = listaReservaciones.Any(r =>
-                r.IdUsuario == reservacionEN.IdUsuario &&
-                r.IdNumeroDeMesa == reservacionEN.IdNumeroDeMesa);
+            var listadenumero = ReservacionBL.MostrarReservacion();
+            bool existe = listaReservaciones.Any(r => r.IdUsuario == reservacionEN.IdUsuario);
+               
+            bool numeroexiste = listadenumero.Any(n => n.IdNumeroDeMesa ==reservacionEN.IdNumeroDeMesa);
 
-            if (existe)
+            if (existe||numeroexiste)
             {
-                TempData["YaTieneReservacion"] = "Ya tienes una reservación para este número de mesa.";
+                TempData["YaTieneReservacion"] = "Ya tienes una reservación .";
                 return RedirectToAction("MostrarMesasU");
             }
+           
 
-            ReservacionBL.GuardarReservacion(reservacionEN);
-            TempData["Exito"] = "¡Reservación realizada con éxito!";
+                ReservacionBL.GuardarReservacion(reservacionEN);
+            TempData["Mensaje"] = "¡Reservación realizada con éxito!";
             return RedirectToAction("MostrarMesasU");
         }
 
@@ -148,6 +151,92 @@ namespace ReservaUI.Controllers
                                      .ToList();
 
             return View("MisReservaciones", lista);
+        }
+        [HttpGet]
+        public IActionResult ModificarReservacion(int Id)
+        {
+            Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+            if (HttpContext.Session.GetInt32("IdUsuario") == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+
+            var reserva = ReservacionBL.MostrarReservacion().FirstOrDefault(r => r.Id == Id);
+            if (reserva == null) return NotFound();
+            var mesaBL = MesaBL.MostrarMesa();
+            ViewBag.Mesas = new SelectList(mesaBL, "Id", "Nombre", reserva.IdMesa);
+            var numerodemesa = NumeroDeMesaBL.MostrarNumeroDeMesa();
+            ViewBag.Numeros = new SelectList(numerodemesa, "Id", "Nombre", reserva.IdNumeroDeMesa);
+          
+            return View(reserva);
+        }
+
+        // POST: Tarea/ModificarTarea/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ModificarReservacion(ReservacionEN reservacionEN)
+        {
+            Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+            if (ModelState.IsValid)
+            {
+                var reserva = ReservacionBL.MostrarReservacion();
+                bool existe = reserva.Any(e =>
+                    e.IdUsuario.ToString().Trim() == reservacionEN.IdUsuario.ToString().Trim()
+                    && e.Id != reservacionEN.Id); //  evitar que choque con su propio nombre
+
+                if (existe)
+                {
+                    TempData["ErrorDuplicado"] = "Este usuario  ya tiene una Reservacion.";
+                    return RedirectToAction(nameof(MostrarReservacion));
+                }
+
+
+                ReservacionBL.ModificarReservacion(reservacionEN);
+                var mesaBL = MesaBL.MostrarMesa();
+                ViewBag.Mesas = new SelectList(mesaBL, "Id", "Nombre", reservacionEN.IdMesa);
+                var numerodemesa = NumeroDeMesaBL.MostrarNumeroDeMesa();
+                ViewBag.Numeros = new SelectList(numerodemesa, "Id", "Nombre", reservacionEN.IdNumeroDeMesa);
+               
+
+                TempData["ExitoModificar"] = "Reservacion modificada correctamente.";
+                return RedirectToAction(nameof(MostrarReservacion));
+
+
+            }
+
+            return View(reservacionEN);
+        }
+        [HttpGet]
+        public IActionResult EliminarReservacion(int Id)
+        {
+            Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+            if (HttpContext.Session.GetInt32("IdUsuario") == null)
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            var reservacion = ReservacionBL.MostrarReservacion().FirstOrDefault(r => r.Id == Id);
+            if (reservacion == null) return NotFound();
+            return View(reservacion);
+        }
+        [HttpPost, ActionName("EliminarReservacion")]
+        public IActionResult EliminarReservacionConfirmado(int Id)
+        {
+            Response.Headers["Cache-Control"] = "no-store, no-cache, must-revalidate";
+            Response.Headers["Pragma"] = "no-cache";
+            Response.Headers["Expires"] = "0";
+
+            ReservacionBL.EliminarReservacion(Id);
+            TempData["ExitoEliminar"] = "Reservacion eliminada correctamente.";
+            return RedirectToAction(nameof(MostrarReservacion));
         }
     }
 }

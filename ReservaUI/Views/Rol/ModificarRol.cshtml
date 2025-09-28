@@ -18,7 +18,7 @@
 
                         <div class="mb-3">
                             <label asp-for="Nombre" class="form-label fw-bold"></label>
-                            <input asp-for="Nombre" class="form-control" placeholder="Rol" />
+                            <input asp-for="Nombre" class="form-control" placeholder="Rol" required />
                             <span asp-validation-for="Nombre" class="text-danger"></span>
                         </div>
 
@@ -36,4 +36,8 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/Rol.js"></script>
+}
 

@@ -1,14 +1,14 @@
 ﻿@model ReservaEN.UsuarioEN
 @{
     ViewData["Title"] = "GuardarUsuario";
-    Layout = "~/Views/Shared/Usuario.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-7">
             <div class="card shadow-lg border-0 rounded-lg mt-5">
-                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrate Chabal</h3></div>
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrate Carnalito</h3></div>
                 <div class="card-body">
                     <form asp-action="GuardarUsuario" asp-controller="Usuario" method="post">
                         <!-- Campo oculto para IdRol -->
@@ -71,4 +71,37 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/Usuario.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            @* Éxitos *@
+                    @if (TempData["ExitoGuardar"] != null)
+        {
+                                    <text>
+                                        Swal.fire({
+                                            icon: "success",
+                                            title: "Éxito",
+                                            text: "@TempData["ExitoGuardar"]"
+                                        });
+                                    </text>
+        }
 
+
+
+            @* Errores (ejemplo duplicado) *@
+                  @if (TempData["ErrorDuplicado"] != null)
+        {
+                                    <text>
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Error",
+                                            text: "@TempData["ErrorDuplicado"]"
+                                        });
+                                    </text>
+        }
+        });
+    </script>
+
+}
