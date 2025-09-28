@@ -1,0 +1,70 @@
+﻿
+
+@model List<ReservaEN.ReservacionEN>
+
+@{
+    ViewData["Title"] = "MostrarReservacion";
+    Layout = "~/Views/Shared/Administrador.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="bi bi-calendar-check-fill"></i> Reservaciones</h4>
+           
+        </div>
+
+        <div class="card-body">
+            <table class="table table-hover table-bordered table-striped align-middle">
+                <thead class="TC">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Mesa</th>
+                        <th scope="col">Número de Mesa</th>
+                        <th scope="col">Id Usuario</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Fecha de Reservación</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var r in Model)
+                        {
+                            <tr>
+                                <td>@r.Id</td>
+                                <td>@r.Nombre_Mesa</td>
+                                <td>@r.Nombre_NumeroDeMesa</td>
+                                <td>@r.IdUsuario</td>
+                                <td>@r.Nombre_Usuario</td>
+                                <td>@r.Apellido_Usuario</td>
+                                <td>@r.Numero_Celular</td>
+                                <td>@r.FechaDeReservacion.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td class="text-center">
+                                    <a asp-action="ModificarReservacion" asp-route-id="@r.Id" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Modificar
+                                    </a>
+                                    <a asp-action="EliminarReservacion" asp-route-id="@r.Id" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="9" class="text-center text-muted">
+                                No hay reservaciones registradas.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

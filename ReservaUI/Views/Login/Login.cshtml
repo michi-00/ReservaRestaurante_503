@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card shadow-lg border-0 rounded-3">
+
+            <h2 class="text-white text-center">Iniciar Sesión</h2>
+
+            <div class="card-body">
+                <form asp-action="Login" method="post">
+
+                    <div class="mb-3">
+                        <label for="cuenta" class="form-label">Cuenta</label>
+                        <input type="text" name="cuenta" class="form-control" placeholder="Ingrese su usuario" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="contrasenia" class="form-label">Contraseña</label>
+                        <input type="password" name="contrasenia" class="form-control" placeholder="Ingrese su contraseña" required />
+                    </div>
+
+                    @if (ViewBag.Error != null)
+                    {
+                        <div class="alert alert-danger text-center">
+                            @ViewBag.Error
+                        </div>
+                    }
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Ingresar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer text-center">
+                Reserva Web © @DateTime.Now.Year
+            </div>
+        </div>
+    </div>
+

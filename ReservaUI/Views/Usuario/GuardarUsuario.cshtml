@@ -1,0 +1,74 @@
+﻿@model ReservaEN.UsuarioEN
+@{
+    ViewData["Title"] = "GuardarUsuario";
+    Layout = "~/Views/Shared/Usuario.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-7">
+            <div class="card shadow-lg border-0 rounded-lg mt-5">
+                <div class="card-header"><h3 class="text-center font-weight-light my-4">Registrate Chabal</h3></div>
+                <div class="card-body">
+                    <form asp-action="GuardarUsuario" asp-controller="Usuario" method="post">
+                        <!-- Campo oculto para IdRol -->
+                        <input asp-for="IdRol" type="hidden" value="2" />
+
+                        <div class="row mb-3">
+                            <div class="col-12 mb-3">
+                                <div class="form-floating w-100">
+                                    <input asp-for="Nombre" class="form-control" id="Nombre" placeholder="Ingresa un Nombre" required />
+                                    <label for="Nombre" class="w-100 text-start">Nombre</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12  mb-3">
+                                <div class="form-floating w-100">
+                                    <input asp-for="Apellido" class="form-control" id="Apellido" placeholder="Ingrese un Apellido" required />
+                                    <label for="Apellido" class="w-100 text-start">Apellido</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12  mb-3">
+                                <div class="form-floating w-100">
+                                    <input asp-for="Celular" class="form-control" type="tel" pattern="[0-9]{8}" placeholder="70901830" required />
+                                    <label for="Celular" class="w-100 text-start">Celular</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="form-floating w-100">
+                                    <input asp-for="Cuenta" class="form-control" id="Cuenta" type="email" placeholder="name@example.com" required />
+                                    <label for="Cuenta" class="w-100 text-start">Cuenta</label>
+                                </div>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <div class="form-floating w-100">
+                                    <input asp-for="Contrasenia" class="form-control" id="Contrasenia" type="password" placeholder="Ingresa una Contraseña" required />
+                                    <label for="Contrasenia" class="w-100 text-start">Contraseña</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (TempData["MensajeExito"] != null)
+                        {
+                            <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+                                @TempData["MensajeExito"]
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        }
+                        <div class="mt-4 mb-0">
+                            <div class="d-grid">
+                                @TempData["MensajeExito"]
+                                <button type="submit" class="btn btn-primary btn-block">Registrar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

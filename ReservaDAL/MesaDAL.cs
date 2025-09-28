@@ -11,6 +11,33 @@ namespace ReservaDAL
 {
     public class MesaDAL
     {
+        public static MesaEN ObtenerMesaPorId(int id)
+        {
+            MesaEN mesa = null;
+            using (IDbConnection _conn = ComunBD.ObtenerConexion(ComunBD.TipoBD.SqlServer))
+            {
+                _conn.Open();
+                SqlCommand _comando = new SqlCommand("ObtenerMesaPorId", _conn as SqlConnection);
+                _comando.CommandType = CommandType.StoredProcedure;
+                _comando.Parameters.Add(new SqlParameter("@Id", id));
+
+                IDataReader _reader = _comando.ExecuteReader();
+                if (_reader.Read())
+                {
+                    mesa = new MesaEN
+                    {
+                        Id = _reader.GetInt32(0),
+                        Nombre = _reader.GetString(1),
+                        Personas = _reader.GetString(2)
+                    };
+                }
+
+                _conn.Close();
+            }
+
+            return mesa;
+
+        }
         public static List<MesaEN> MostrarMesa()
         {
             List<MesaEN> _Lista = new List<MesaEN>();

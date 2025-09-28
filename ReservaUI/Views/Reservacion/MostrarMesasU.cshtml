@@ -1,0 +1,27 @@
+﻿@model IEnumerable<ReservaEN.MesaEN>
+@{
+    ViewData["Title"] = "MostrarMesasU";
+    Layout = "~/Views/Shared/Usuario.cshtml";
+}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Elige tu mesa</h2>
+    <p class="text-center">Selecciona la mesa que deseas reservar. Todas las mesas disponibles se muestran aquí.</p>
+
+    <div class="row justify-content-center">
+        @foreach (var mesa in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header text-center bg-light">
+                        <h4 class="my-0">@mesa.Nombre</h4>
+                        <p class="text-muted">Capacidad: @mesa.Personas personas</p>
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <a href="@Url.Action("SeleccionarNumeroDeMesa", "Reservacion", new { idMesa = mesa.Id })" class="btn btn-primary mt-auto">Reservar esta mesa</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

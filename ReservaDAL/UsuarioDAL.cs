@@ -128,5 +128,34 @@ namespace ReservaDAL
             }
 
         }
+        public static UsuarioEN ValidarUsuario(string cuenta, string contrasenia)
+        {
+            using (IDbConnection _conn = ComunBD.ObtenerConexion(ComunBD.TipoBD.SqlServer))
+            {
+                _conn.Open();
+                SqlCommand _comando = new SqlCommand("ValidarUsuario", _conn as SqlConnection);
+                _comando.CommandType = CommandType.StoredProcedure;
+                _comando.Parameters.AddWithValue("@Cuenta", cuenta);
+                _comando.Parameters.AddWithValue("@Contrasenia", contrasenia);
+
+                SqlDataReader reader = _comando.ExecuteReader();
+                UsuarioEN usuario = null;
+
+
+                if (reader.Read())
+                {
+                    usuario = new UsuarioEN
+                    {
+                        Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                        IdRol = reader.GetInt32(reader.GetOrdinal("IdRol")),
+                        Cuenta = reader.GetString(reader.GetOrdinal("Cuenta")),
+                        Contrasenia = reader.GetString(reader.GetOrdinal("Contrasenia"))
+                    };
+                }
+
+                _conn.Close();
+                return usuario;
+            }
+        }
     }
 }

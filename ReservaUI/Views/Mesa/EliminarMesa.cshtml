@@ -1,0 +1,34 @@
+﻿@model ReservaEN.MesaEN
+@{
+    ViewData["Title"] = "EliminarMesa";
+    Layout = "~/Views/Shared/Administrador.cshtml";
+}
+
+<h1>EliminarMesa</h1>
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0"><i class="bi bi-trash-fill"></i> Eliminar Mesa</h4>
+        </div>
+        <div class="card-body">
+            <p>¿Estás seguro que deseas eliminar la siguiente mesa?</p>
+            <ul class="list-group mb-3">
+                <li class="list-group-item"><strong>Id:</strong> @Model.Id</li>
+                <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+                <li class="list-group-item"><strong>Personas:</strong> @Model.Personas</li>
+            </ul>
+            <form asp-action="EliminarMesa" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash-fill"></i> Eliminar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

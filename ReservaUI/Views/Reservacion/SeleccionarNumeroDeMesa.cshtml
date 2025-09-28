@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ReservaEN.NumeroDeMesaEN>
+@{
+    ViewData["Title"] = "SeleccionarNumeroDeMesa";
+    var idMesa = ViewBag.IdMesa;
+    Layout = "~/Views/Shared/Usuario.cshtml";
+}
+
+<div class="container my-5">
+    <h2 class="text-center mb-4">Selecciona el número de mesa disponible</h2>
+    <p class="text-center">Elige el número de mesa que deseas reservar para tu selección.</p>
+
+    <div class="row justify-content-center">
+        @foreach (var numero in Model)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="card h-100 shadow-sm text-center p-3">
+                    <h4 class="my-2">Mesa #: @numero.Nombre</h4>
+                    <a href="@Url.Action("ConfirmarReservacion", "Reservacion", new { idMesa = idMesa, idNumeroDeMesa = numero.Id })" class="btn btn-success mt-3">Seleccionar</a>
+                </div>
+            </div>
+        }
+        @if (!Model.Any())
+        {
+            <div class="col-12 text-center text-muted mt-3">
+                <p>No hay números de mesa disponibles para esta mesa.</p>
+                <a href="@Url.Action("MostrarMesasU", "Reservacion")" class="btn btn-secondary">Volver</a>
+            </div>
+        }
+    </div>
+</div>

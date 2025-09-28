@@ -1,0 +1,38 @@
+﻿@model ReservaEN.MesaEN
+@{
+    ViewData["Title"] = "ModificarMesa";
+    Layout = "~/Views/Shared/Administrador.cshtml";
+}
+
+<h1>ModificarMesa</h1>
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-warning text-dark">
+            <h4 class="mb-0"><i class="bi bi-pencil-square"></i> Modificar Mesa</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="ModificarMesa" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label"></label>
+                    <input asp-for="Nombre" class="form-control" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Personas" class="form-label"></label>
+                    <input asp-for="Personas" class="form-control" />
+                    <span asp-validation-for="Personas" class="text-danger"></span>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Volver
+                    </a>
+                    <button type="submit" class="btn btn-warning text-white">
+                        <i class="bi bi-pencil"></i> Modificar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

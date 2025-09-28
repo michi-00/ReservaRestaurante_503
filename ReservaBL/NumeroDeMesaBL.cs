@@ -10,6 +10,12 @@ namespace ReservaBL
 {
     public class NumeroDeMesaBL
     {
+       
+        public static NumeroDeMesaEN ObtenerNumeroDeMesaPorId(int id)
+        {
+            // Llama al método estático de la DAL directamente
+            return NumeroDeMesaDAL.ObtenerNumeroDeMesaPorId(id);
+        }
         public static List<NumeroDeMesaEN> MostrarNumeroDeMesa()
         {
             return NumeroDeMesaDAL.MostrarNumeroDeMesa();

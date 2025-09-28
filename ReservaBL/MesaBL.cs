@@ -10,6 +10,12 @@ namespace ReservaBL
 {
     public class MesaBL
     {
+        public static MesaEN ObtenerMesaPorId(int id)
+        {
+            // Llama al método estático de la DAL directamente
+            return MesaDAL.ObtenerMesaPorId(id);
+        }
+
         public static List<MesaEN> MostrarMesa()
         {
             return MesaDAL.MostrarMesa();

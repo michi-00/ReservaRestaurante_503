@@ -1,0 +1,49 @@
+﻿
+@model IEnumerable<ReservaEN.ReservacionEN>
+@{
+    ViewData["Title"] = "MisReservaciones";
+    Layout = "~/Views/Shared/Usuario.cshtml";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Mis Reservaciones</h2>
+
+    <table class="table table-hover table-bordered align-middle">
+        <thead class="table-primary">
+            <tr>
+                <th>#</th>
+                <th>Mesa</th>
+                <th>Número de Mesa</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Celular</th>
+                <th>Fecha de Reservación</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Any())
+            {
+                foreach (var r in Model)
+                {
+                    <tr>
+                        <td>@r.Id</td>
+                        <td>@r.Nombre_Mesa</td>
+                        <td>@r.Nombre_NumeroDeMesa</td>
+                        <td>@r.Nombre_Usuario</td>
+                        <td>@r.Apellido_Usuario</td>
+                        <td>@r.Numero_Celular</td>
+                        <td>@r.FechaDeReservacion.ToString("dd/MM/yyyy HH:mm")</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7" class="text-center text-muted">
+                        No tienes reservaciones.
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

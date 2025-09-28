@@ -1,0 +1,46 @@
+﻿@model ReservaEN.ReservacionEN
+@{
+    ViewData["Title"] = "ConfirmarReservacion";
+    Layout = "~/Views/Shared/Usuario.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4><i class="bi bi-check2-square"></i> Confirmar Reservación</h4>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <p class="fs-5">¿Deseas confirmar tu reservación para esta mesa?</p>
+
+                    <ul class="list-group mb-4 text-start">
+                        <p><strong>Mesa:</strong> @Model.Nombre_Mesa</p>
+                        <p><strong>Número de Mesa:</strong> @Model.Nombre_NumeroDeMesa</p>
+                        <p><strong>Nombre:</strong> @Model.Nombre_Usuario</p>
+                        <p><strong>Apellido:</strong> @Model.Apellido_Usuario</p>
+                        <p><strong>Celular:</strong> @Model.Numero_Celular</p>
+                    </ul>
+
+                    <form asp-action="GuardarReservacionConfirmada" method="post">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" asp-for="IdMesa" />
+                        <input type="hidden" asp-for="IdNumeroDeMesa" />
+                        <input type="hidden" asp-for="IdUsuario" />
+                        <input type="hidden" asp-for="Nombre_Mesa" />
+                        <input type="hidden" asp-for="Nombre_NumeroDeMesa" />
+                        <input type="hidden" asp-for="Nombre_Usuario" />
+                        <input type="hidden" asp-for="Apellido_Usuario" />
+                        <input type="hidden" asp-for="Numero_Celular" />
+                        <input type="hidden" asp-for="FechaDeReservacion" value="@DateTime.Now" />
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="MostrarMesasU" class="btn btn-secondary">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Confirmar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

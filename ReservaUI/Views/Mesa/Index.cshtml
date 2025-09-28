@@ -1,0 +1,59 @@
+﻿@model List<ReservaEN.MesaEN>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Administrador.cshtml";
+}
+
+<h1>Mesas</h1>
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0"><i class="bi bi-table"></i> Lista de Mesas</h4>
+            <a asp-action="GuardarMesa" class="btn btn-light btn-sm">
+                <i class="bi bi-plus-square-fill"></i> Agregar Mesa
+            </a>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover table-bordered table-striped align-middle">
+                <thead class="TC">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Personas</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var mesa in Model)
+                        {
+                            <tr>
+                                <td>@mesa.Id</td>
+                                <td>@mesa.Nombre</td>
+                                <td>@mesa.Personas</td>
+                                <td class="text-center">
+                                    <a asp-action="ModificarMesa" asp-route-id="@mesa.Id" class="btn btn-warning btn-sm">
+                                        <i class="bi bi-pencil-square"></i> Modificar
+                                    </a>
+                                    <a asp-action="EliminarMesa" asp-route-id="@mesa.Id" class="btn btn-danger btn-sm">
+                                        <i class="bi bi-trash-fill"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                No hay Mesas disponibles.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

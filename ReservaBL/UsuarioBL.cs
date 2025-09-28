@@ -10,7 +10,10 @@ namespace ReservaBL
 {
     public class UsuarioBL
     {
-      
+        public static UsuarioEN IniciarSesion(string cuenta, string contrasenia)
+        {
+            return UsuarioDAL.ValidarUsuario(cuenta, contrasenia);
+        }
         public static UsuarioEN ObtenerUsuarioPorId(int id)
         {
 

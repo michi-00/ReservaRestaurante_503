@@ -1,0 +1,39 @@
+﻿@model ReservaEN.RolEN
+@{
+    ViewData["Title"] = "EliminarRol";
+    Layout = "~/Views/Shared/Administrador.cshtml";
+}
+
+<h1>EliminarRol</h1>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-header bg-danger text-white text-center">
+                    <h4><i class="bi bi-trash-fill"></i> Eliminar Rol</h4>
+                </div>
+                <div class="card-body p-4 text-center">
+                    <p class="fs-5">¿Está seguro que desea eliminar al siguiente Rol?</p>
+
+                    <ul class="list-group mb-4">
+                        <li class="list-group-item"><strong>Id:</strong> @Model.Id</li>
+                        <li class="list-group-item"><strong>Nombre:</strong> @Model.Nombre</li>
+                    </ul>
+
+                    <form asp-action="EliminarRol" method="post" id="EliminarRolForm">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-trash-fill"></i> Eliminar
+                            </button>
+                            <a asp-action="Index" class="btn btn-secondary">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

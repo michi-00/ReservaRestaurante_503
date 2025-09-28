@@ -14,7 +14,7 @@ namespace ReservaDAL
         {
             SqlServer, Oracle, DB2
         }
-        public const string Sqlconn = @";";
+        public const string Sqlconn = @"Data Source=.\;Initial Catalog=Restaurante;Integrated Security=True;TrustServerCertificate=True;";
         public static IDbConnection ObtenerConexion(TipoBD pTipoBD)
         {
             IDbConnection _conn;
